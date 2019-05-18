@@ -1,0 +1,29 @@
+{
+  "name": "shbgm.ca",
+  "version": "1.0.0",
+  "description": "private website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "export": "next export",
+    "start": "next start",
+    "deploy": "npm run build && npm run export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shabegom/shbgm.ca.git"
+  },
+  "keywords": [],
+  "author": "Sam Morrison",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shabegom/shbgm.ca/issues"
+  },
+  "homepage": "https://github.com/shabegom/shbgm.ca#readme",
+  "dependencies": {
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
