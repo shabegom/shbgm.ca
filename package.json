@@ -22,8 +22,15 @@
   },
   "homepage": "https://github.com/shabegom/shbgm.ca#readme",
   "dependencies": {
+    "graphql": "^14.3.0",
     "next": "^8.1.0",
+    "next-apollo": "^2.1.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-apollo": "^2.5.5",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.0"
   }
 }
