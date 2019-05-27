@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build:next": "next build",
+    "build": "next build",
     "export": "next export",
     "start": "next start",
-    "deploy": "npm run build:next && npm run export",
-    "build:functions": "./node_modules/.bin/netlify-lambda build ./functions"
+    "deploy": "npm run build && npm run export"
   },
   "repository": {
     "type": "git",
@@ -32,8 +31,13 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "babel-plugin-styled-components": "^1.10.0",
+    "netlify": "^2.4.4",
     "netlify-cli": "^2.11.19",
     "netlify-lambda": "^1.4.13"
+=======
+    "babel-plugin-styled-components": "^1.10.0"
+>>>>>>> master
   }
 }
