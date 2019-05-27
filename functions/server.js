@@ -3,7 +3,7 @@ import { RESTDataSource } from "apollo-datasource-rest";
 
 // Setup the REST API
 class ContentfulAPI extends RESTDataSource {
- new  constructor() {
+  constructor() {
     super();
     this.baseURL = "https://cdn.contentful.com/";
     this.SPACE_ID = "xvhcrcp1tdxm";
