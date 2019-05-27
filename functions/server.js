@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer, gql } from "apollo-server-lambda";
 import { RESTDataSource } from "apollo-datasource-rest";
 
 // Setup the REST API
