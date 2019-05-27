@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.0",
-    "netlify": "^2.4.4",
     "netlify-cli": "^2.11.19",
     "netlify-lambda": "^1.4.13"
   }
