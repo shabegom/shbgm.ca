@@ -1,23 +1,17 @@
 import { ApolloServer, gql } from "apollo-server-lambda";
-import { RESTDataSource } from "apollo-datasource-rest";
+import fetch from "isomorphic-unfetch";
 
-// Setup the REST API
-class ContentfulAPI extends RESTDataSource {
-  constructor() {
-    super();
-    this.baseURL = "https://cdn.contentful.com/";
-    this.SPACE_ID = "xvhcrcp1tdxm";
-    this.ACCESS_TOKEN = "lVv58DHlqjwn9_VfbEW-mHPHz5q6otazpvV3MfFAcDU";
-    this.space = `spaces/${this.SPACE_ID}/`;
-    this.environment = "environments/master/";
-    this.token = `?access_token=${this.ACCESS_TOKEN}`;
-  }
+let baseURL = "https://cdn.contentful.com/";
+let SPACE_ID = "xvhcrcp1tdxm";
+let ACCESS_TOKEN = "lVv58DHlqjwn9_VfbEW-mHPHz5q6otazpvV3MfFAcDU";
+let space = `spaces/${this.SPACE_ID}/`;
+let environment = "environments/master/";
+let token = `?access_token=${this.ACCESS_TOKEN}`;
 
-  async getAllPeople() {
-    return this.get(
-      `${this.space}${this.environment}content_types/person${this.token}`
-    );
-  }
+async function getAllPeople() {
+  return fetch(
+    `${this.space}${this.environment}content_types/person${this.token}`
+  ).then(res => res.json());
 }
 
 const typeDefs = gql`
@@ -37,8 +31,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    people: (root, args, { dataSources }) =>
-      dataSources.contentfulAPI.getAllPeople()
+    people: () => getAllPeople()
   },
   Person: {
     name: res => res
@@ -47,10 +40,7 @@ const resolvers = {
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
-  dataSources: () => ({
-    contentfulAPI: new ContentfulAPI()
-  })
+  resolvers
 });
 
 exports.handler = server.createHandler();
