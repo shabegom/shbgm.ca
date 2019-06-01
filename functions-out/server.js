@@ -9,21 +9,37 @@ let environment = "environments/master/";
 let token = `?access_token=${this.ACCESS_TOKEN}`;
 
 async function getAllPeople() {
-  return fetch(
-    `${this.space}${this.environment}content_types/person${this.token}`
-  ).then(res => res.json());
+  return await fetch(
+    `https://cdn.contentful.com/spaces/xvhcrcp1tdxm/environments/master/entries/?access_token=lVv58DHlqjwn9_VfbEW-mHPHz5q6otazpvV3MfFAcDU&content_type=person`
+  )
+    .then(res => res.json())
+    .then(data => {
+      console.log(data.items);
+      return data.items;
+    });
+}
+
+async function getPerson(id) {
+  return await fetch(
+    `https://cdn.contentful.com/spaces/xvhcrcp1tdxm/environments/master/entries/${id}/?access_token=lVv58DHlqjwn9_VfbEW-mHPHz5q6otazpvV3MfFAcDU&content_type=person`
+  )
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      return { id: data.sys.id };
+    });
 }
 
 const typeDefs = gql`
   type Person {
-    id: Int!
-    name: String!
+    id: String!
+    name: String
     Headline: String
     Description: String
     Flair: String
   }
   type Query {
-    person(name: String!): Person
+    person(id: String!): Person
     people: [Person]
   }
 
@@ -31,10 +47,8 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    people: () => getAllPeople()
-  },
-  Person: {
-    name: res => res
+    people: () => getAllPeople(),
+    person: id => getPerson(id)
   }
 };
 

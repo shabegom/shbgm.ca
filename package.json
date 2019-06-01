@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/shabegom/shbgm.ca#readme",
   "dependencies": {
-    "apollo-datasource-rest": "^0.4.0",
     "apollo-server-lambda": "^2.5.0",
     "graphql": "^14.3.0",
     "isomorphic-unfetch": "^3.0.0",
@@ -35,9 +34,6 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "utf-8-validate": "^5.0.2",
-    "bufferutil": "^4.0.1",
-    "@babel/preset-env": "^7.4.5",
     "babel-plugin-styled-components": "^1.10.0",
     "netlify-cli": "^2.11.19",
     "netlify-lambda": "^1.4.13"
