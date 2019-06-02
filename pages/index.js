@@ -46,7 +46,10 @@ const GlobalStyle = createGlobalStyle`
 export default withData(props => (
   <Query query={nameQuery}>
     {({ loading, error, data }) => {
-      if (loading) return "Loading...";
+      if (loading)
+        return (
+          <img src="https://media.giphy.com/media/17dYuJvJX5P8s/giphy.gif" />
+        );
       if (error) return `Error! ${error.message}`;
       if (!loading && !error && data.people) {
         let person = data.people[0].fields;
