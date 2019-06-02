@@ -28,7 +28,23 @@ const nameQuery = gql`
     people {
       fields {
         name
+        headline
         flair
+        description
+        jobs {
+          fields {
+            yearStarted
+            role
+            description
+            company
+            highlights {
+              fields {
+                title
+                detail
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -67,16 +83,16 @@ export default withData(props => (
                 <FlairComponent flair={person.flair} />
               </Name>
               <Headline>
-                <HeadlineComponent />
+                <HeadlineComponent headline={person.headline} />
               </Headline>
               <Numbers>
                 <NumbersComponent />
               </Numbers>
               <Blurb>
-                <BlurbComponent />
+                <BlurbComponent blurb={person.description} />
               </Blurb>
               <Experience>
-                <ExperienceComponent />
+                <ExperienceComponent jobs={person.jobs} />
               </Experience>
               <Insights>
                 <InsightsComponent />

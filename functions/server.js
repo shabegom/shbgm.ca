@@ -15,7 +15,7 @@ const typeDefs = gql`
     role: [String]
     description: String
     company: String
-    highlight: [HighlightObject]
+    highlights: [HighlightObject]
   }
   type JobObject {
     sys: Sys
@@ -49,7 +49,7 @@ const typeDefs = gql`
   type Person {
     name: String
     headline: String
-    job: [JobObject]
+    jobs: [JobObject]
     flair: String
     description: String
   }
