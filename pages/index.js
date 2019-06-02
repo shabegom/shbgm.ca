@@ -48,9 +48,12 @@ export default withData(props => (
     {({ loading, error, data }) => {
       if (loading)
         return (
-          <img src="https://media.giphy.com/media/17dYuJvJX5P8s/giphy.gif" />
+          <img
+            style={{ margin: "10%", width: "80%", height: "auto" }}
+            src="https://media.giphy.com/media/17dYuJvJX5P8s/giphy.gif"
+          />
         );
-      if (error) return `Error! ${error.message}`;
+      if (error) return `Something Appears to be wrong!`;
       if (!loading && !error && data.people) {
         let person = data.people[0].fields;
         let first = person.name.split(" ")[0];
