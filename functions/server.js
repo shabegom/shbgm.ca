@@ -64,7 +64,7 @@ const typeDefs = gql`
     highlights: [HighlightObject]
     jobs: [JobObject]
 
-    person(id: String!): [Person]
+    person(id: String!): Person
   }
 
 `;

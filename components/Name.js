@@ -6,9 +6,7 @@ import styled from "styled-components";
 const nameQuery = gql`
   query {
     person(id: "3XHOJQItimwOHvLnzNW4S3") {
-      fields {
-        name
-      }
+      name
     }
   }
 `;
