@@ -28,6 +28,7 @@ const nameQuery = gql`
     people {
       fields {
         name
+        flair
       }
     }
   }
@@ -48,15 +49,16 @@ export default withData(props => (
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
       if (!loading && !error && data.people) {
-        let first = data.people[0].fields.name.split(" ")[0];
-        let last = data.people[0].fields.name.split(" ")[1];
+        let person = data.people[0].fields;
+        let first = person.name.split(" ")[0];
+        let last = person.name.split(" ")[1];
         return (
           <>
             <GlobalStyle />
             <Grid>
               <Name>
                 <NameComponent first={first} last={last} />
-                <FlairComponent />
+                <FlairComponent flair={person.flair} />
               </Name>
               <Headline>
                 <HeadlineComponent />
