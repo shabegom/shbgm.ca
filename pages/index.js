@@ -23,7 +23,7 @@ import BlurbComponent from "../components/Blurb";
 import ExperienceComponent from "../components/Experience";
 import InsightsComponent from "../components/Insights";
 
-const nameQuery = gql`
+const personQuery = gql`
   query {
     people {
       fields {
@@ -31,20 +31,30 @@ const nameQuery = gql`
         headline
         flair
         description
-        jobs {
-          fields {
-            yearStarted
-            role
-            description
-            company
-            highlights {
-              fields {
-                title
-                detail
-              }
-            }
-          }
-        }
+      }
+    }
+  }
+`;
+
+const jobQuery = gql`
+  query {
+    jobs {
+      fields {
+        company
+        yearStarted
+        role
+        description
+      }
+    }
+  }
+`;
+
+const highlightQuery = gql`
+  query {
+    highlights {
+      fields {
+        title
+        detail
       }
     }
   }
@@ -60,47 +70,60 @@ const GlobalStyle = createGlobalStyle`
     `;
 
 export default withData(props => (
-  <Query query={nameQuery}>
-    {({ loading, error, data }) => {
-      if (loading)
-        return (
-          <img
-            style={{ margin: "10%", width: "80%", height: "auto" }}
-            src="https://media.giphy.com/media/17dYuJvJX5P8s/giphy.gif"
-          />
-        );
-      if (error) return `Something Appears to be wrong!`;
-      if (!loading && !error && data.people) {
-        let person = data.people[0].fields;
-        let first = person.name.split(" ")[0];
-        let last = person.name.split(" ")[1];
-        return (
-          <>
-            <GlobalStyle />
-            <Grid>
-              <Name>
-                <NameComponent first={first} last={last} />
-                <FlairComponent flair={person.flair} />
-              </Name>
-              <Headline>
-                <HeadlineComponent />
-              </Headline>
-              <Numbers>
-                <NumbersComponent />
-              </Numbers>
-              <Blurb>
-                <BlurbComponent />
-              </Blurb>
+  <>
+    <GlobalStyle />
+    <Grid>
+      <Query query={personQuery}>
+        {({ loading, error, data }) => {
+          if (loading)
+            return (
+              <img
+                style={{ margin: "10%", width: "80%", height: "auto" }}
+                src="https://media.giphy.com/media/17dYuJvJX5P8s/giphy.gif"
+              />
+            );
+          if (error) return `Something Appears to be wrong!`;
+          if (!loading && !error && data.people) {
+            let person = data.people[0].fields;
+            let first = person.name.split(" ")[0];
+            let last = person.name.split(" ")[1];
+            return (
+              <>
+                <Name>
+                  <NameComponent first={first} last={last} />
+                  <FlairComponent flair={person.flair} />
+                </Name>
+                <Headline>
+                  <HeadlineComponent />
+                </Headline>
+                <Numbers>
+                  <NumbersComponent />
+                </Numbers>
+                <Blurb>
+                  <BlurbComponent />
+                </Blurb>
+              </>
+            );
+          }
+        }}
+      </Query>
+      <Query query={jobQuery}>
+        {({ loading, err, data }) => {
+          if (loading) {
+            return null;
+          }
+          if (data.jobs[0]) {
+            return (
               <Experience>
                 <ExperienceComponent />
               </Experience>
-              <Insights>
-                <InsightsComponent />
-              </Insights>
-            </Grid>
-          </>
-        );
-      }
-    }}
-  </Query>
+            );
+          }
+        }}
+      </Query>
+      <Insights>
+        <InsightsComponent />
+      </Insights>
+    </Grid>
+  </>
 ));
