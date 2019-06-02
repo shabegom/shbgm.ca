@@ -5,7 +5,11 @@ import styled from "styled-components";
 
 const nameQuery = gql`
   query {
-    hello
+    person(id: "3XHOJQItimwOHvLnzNW4S3") {
+      fields {
+        name
+      }
+    }
   }
 `;
 
@@ -30,10 +34,12 @@ export default function Name() {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
         if (!loading && !error) {
+          let first = data.person.fields.name.split(" ")[0];
+          let last = data.person.fields.name.split(" ")[1];
           return (
             <StyledName>
-              <StyledSam>{data.hello}</StyledSam>{" "}
-              <StyledMorrison>Morrison</StyledMorrison>
+              <StyledSam>{first}</StyledSam>{" "}
+              <StyledMorrison>{last}</StyledMorrison>
             </StyledName>
           );
         }
