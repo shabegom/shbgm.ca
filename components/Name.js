@@ -33,7 +33,7 @@ export default function Name() {
       {({ loading, error, data }) => {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
-        if (!loading && !error) {
+        if (!loading && !error && data.people) {
           let first = data.people[0].fields.name.split(" ")[0];
           let last = data.people[0].fields.name.split(" ")[1];
           return (
