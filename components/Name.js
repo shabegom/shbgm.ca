@@ -1,17 +1,5 @@
 import React from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import styled from "styled-components";
-
-const nameQuery = gql`
-  query {
-    people {
-      fields {
-        name
-      }
-    }
-  }
-`;
 
 const StyledName = styled.div`
   font-size: 2rem;
@@ -27,24 +15,10 @@ const StyledMorrison = styled.span`
   color: ${props => props.theme.strongRedAccent};
 `;
 
-export default function Name() {
+export default function Name({ first, last }) {
   return (
-    <Query query={nameQuery}>
-      {({ loading, error, data }) => {
-        if (loading) return "Loading...";
-        if (error) return `Error! ${error.message}`;
-        if (!loading && !error && data.people) {
-          let first = data.people[0].fields.name.split(" ")[0];
-          let last = data.people[0].fields.name.split(" ")[1];
-          return (
-            <StyledName>
-              <StyledSam>{first}</StyledSam>{" "}
-              <StyledMorrison>{last}</StyledMorrison>
-            </StyledName>
-          );
-        }
-        return null;
-      }}
-    </Query>
+    <StyledName>
+      <StyledSam>{first}</StyledSam> <StyledMorrison>{last}</StyledMorrison>
+    </StyledName>
   );
 }

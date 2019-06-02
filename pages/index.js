@@ -12,6 +12,9 @@ import {
   Tagline
 } from "../lib/layout";
 
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 import NumbersComponent from "../components/Numbers";
 import NameComponent from "../components/Name";
 import FlairComponent from "../components/Flair";
@@ -19,6 +22,16 @@ import HeadlineComponent from "../components/Headline";
 import BlurbComponent from "../components/Blurb";
 import ExperienceComponent from "../components/Experience";
 import InsightsComponent from "../components/Insights";
+
+const nameQuery = gql`
+  query {
+    people {
+      fields {
+        name
+      }
+    }
+  }
+`;
 
 const GlobalStyle = createGlobalStyle`
         body {
@@ -30,28 +43,40 @@ const GlobalStyle = createGlobalStyle`
     `;
 
 export default withData(props => (
-  <>
-    <GlobalStyle />
-    <Grid>
-      <Name>
-        <NameComponent />
-        <FlairComponent />
-      </Name>
-      <Headline>
-        <HeadlineComponent />
-      </Headline>
-      <Numbers>
-        <NumbersComponent />
-      </Numbers>
-      <Blurb>
-        <BlurbComponent />
-      </Blurb>
-      <Experience>
-        <ExperienceComponent />
-      </Experience>
-      <Insights>
-        <InsightsComponent />
-      </Insights>
-    </Grid>
-  </>
+  <Query query={nameQuery}>
+    {({ loading, error, data }) => {
+      if (loading) return "Loading...";
+      if (error) return `Error! ${error.message}`;
+      if (!loading && !error && data.people) {
+        let first = data.people[0].fields.name.split(" ")[0];
+        let last = data.people[0].fields.name.split(" ")[1];
+        return (
+          <>
+            <GlobalStyle />
+            <Grid>
+              <Name first={first} last={last}>
+                <NameComponent />
+                <FlairComponent />
+              </Name>
+              <Headline>
+                <HeadlineComponent />
+              </Headline>
+              <Numbers>
+                <NumbersComponent />
+              </Numbers>
+              <Blurb>
+                <BlurbComponent />
+              </Blurb>
+              <Experience>
+                <ExperienceComponent />
+              </Experience>
+              <Insights>
+                <InsightsComponent />
+              </Insights>
+            </Grid>
+          </>
+        );
+      }
+    }}
+  </Query>
 ));
