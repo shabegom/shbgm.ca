@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server-lambda");
-const fetch = require("isomorphic-unfetch");
+const content = require("../lib/contentful.js");
 
 const typeDefs = gql`
   type Highlight {
@@ -59,7 +59,11 @@ const typeDefs = gql`
   }
   type Query {
     hello: String
+
     people: [PersonObject]
+    highlights: [HighlightObject]
+    jobs: [JobObject]
+
     person(id: String!): [Person]
   }
 
@@ -71,7 +75,16 @@ const resolvers = {
       return "Hello, world!";
     },
     people: (parent, args, context) => {
-      return fetch("https://13ea5d55.ngrok.io/contentful").then(res => res);
+      return content.people;
+    },
+    person: (parent, args, context) => {
+      return content.person(args.id);
+    },
+    highlights: (parent, args, context) => {
+      return content.highlights;
+    },
+    jobs: (parent, args, context) => {
+      return content.jobs;
     }
   }
 };
