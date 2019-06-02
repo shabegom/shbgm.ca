@@ -37,7 +37,7 @@ const personQuery = gql`
 `;
 
 const jobQuery = gql`
-  query {
+  {
     jobs {
       fields {
         company
@@ -110,12 +110,15 @@ export default withData(props => (
       <Query query={jobQuery}>
         {({ loading, err, data }) => {
           if (loading) {
-            return null;
+            return "loading";
           }
-          if (data.jobs[0]) {
+          if (err) {
+            return "There has been an erro";
+          }
+          if (!loading && !err && data) {
             return (
               <Experience>
-                <ExperienceComponent />
+                <ExperienceComponent jobs={data.jobs} />
               </Experience>
             );
           }
