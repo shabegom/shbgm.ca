@@ -34,7 +34,7 @@ const nameQuery = gql`
 `;
 
 const GlobalStyle = createGlobalStyle`
-        body {
+        html {
             @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100&display=swap');
             font-family: 'Poppins', sans-serif;
             color: #070707;
