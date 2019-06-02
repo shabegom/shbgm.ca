@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
         body {
             @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100&display=swap');
             font-family: 'Poppins', sans-serif;
-            color: ${props => props.theme.textColor};
+            color: #070707;
             background-color: FFFAE7;
         }
     `;
@@ -37,12 +37,12 @@ export default withData(props => (
         <NameComponent />
         <FlairComponent />
       </Name>
-        <Headline>
-          <HeadlineComponent />
-        </Headline>
-        <Numbers>
-          <NumbersComponent />
-        </Numbers>
+      <Headline>
+        <HeadlineComponent />
+      </Headline>
+      <Numbers>
+        <NumbersComponent />
+      </Numbers>
       <Blurb>
         <BlurbComponent />
       </Blurb>
