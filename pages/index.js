@@ -83,16 +83,16 @@ export default withData(props => (
                 <FlairComponent flair={person.flair} />
               </Name>
               <Headline>
-                <HeadlineComponent headline={person.headline} />
+                <HeadlineComponent />
               </Headline>
               <Numbers>
                 <NumbersComponent />
               </Numbers>
               <Blurb>
-                <BlurbComponent blurb={person.description} />
+                <BlurbComponent />
               </Blurb>
               <Experience>
-                <ExperienceComponent jobs={person.jobs} />
+                <ExperienceComponent />
               </Experience>
               <Insights>
                 <InsightsComponent />
