@@ -54,8 +54,8 @@ export default withData(props => (
           <>
             <GlobalStyle />
             <Grid>
-              <Name first={first} last={last}>
-                <NameComponent />
+              <Name>
+                <NameComponent first={first} last={last} />
                 <FlairComponent />
               </Name>
               <Headline>
