@@ -1,42 +1,42 @@
 const { ApolloServer, gql } = require("apollo-server-lambda");
-const fetch = require("isometric-unfetch");
+const fetch = require("isomorphic-unfetch");
 
 const typeDefs = gql`
   type Highlight {
-    title: String 
+    title: String
     detail: [String]
   }
   type HighlightObject {
-    sys: Sys 
+    sys: Sys
     fields: Highlight
   }
   type Job {
-    yearStarted: String 
+    yearStarted: String
     role: [String]
     description: String
     company: String
-    highlight: [HiglightObject]
+    highlight: [HighlightObject]
   }
   type JobObject {
-    sys: Sys 
-    fields: Job 
+    sys: Sys
+    fields: Job
   }
   type Space {
-    sys: LinkSys 
+    sys: LinkSys
   }
   type Environment {
-    sys: LinkSys 
+    sys: LinkSys
   }
   type ContentType {
-    sys: LinkSys 
+    sys: LinkSys
   }
   type LinkSys {
-    type: String 
+    type: String
     linkType: String
     id: String
   }
-  type: Sys {
-    id: String 
+  type Sys {
+    id: String
     revision: Int
     createdAt: String
     updatedAt: String
@@ -62,6 +62,7 @@ const typeDefs = gql`
     people: [PersonObject]
     person(id: String!): [Person]
   }
+
 `;
 
 const resolvers = {
@@ -70,7 +71,7 @@ const resolvers = {
       return "Hello, world!";
     },
     people: (parent, args, context) => {
-      fetch("https://3eaf55c6.ngrok.io").then(res => console.log(res));
+      return fetch("https://13ea5d55.ngrok.io/contentful").then(res => res);
     }
   }
 };
