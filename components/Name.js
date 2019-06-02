@@ -32,7 +32,7 @@ export default function Name() {
         if (!loading && !error) {
           return (
             <StyledName>
-              <StyledSam>Samuel</StyledSam>{" "}
+              <StyledSam>{data.hello}</StyledSam>{" "}
               <StyledMorrison>Morrison</StyledMorrison>
             </StyledName>
           );

@@ -94,4 +94,4 @@ const server = new ApolloServer({
   resolvers
 });
 
-exports.handler = server.createHandler();
+exports.handler = server.createHandler({});
