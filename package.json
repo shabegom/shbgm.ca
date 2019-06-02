@@ -10,7 +10,7 @@
     "start": "next start",
     "deploy": "npm run build:next && npm run export",
     "build:functions": "./node_modules/.bin/netlify-lambda build ./functions",
-    "serve:functions": "./node_modules/.bin/netlify-lambda serve ./functions"
+    "serve:functions": "./node_modules/.bin/netlify dev"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
   "homepage": "https://github.com/shabegom/shbgm.ca#readme",
   "dependencies": {
     "apollo-server-lambda": "^2.5.0",
+    "contentful": "^7.6.0",
+    "dotenv": "^8.0.0",
     "graphql": "^14.3.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
@@ -36,7 +38,12 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.0",
+    "bufferutil": "^4.0.1",
+    "graphql-cli": "^3.0.11",
+    "graphql-schema-from-json": "0.0.3",
+    "json-graphql-server": "^2.1.3",
     "netlify-cli": "^2.11.19",
-    "netlify-lambda": "^1.4.13"
+    "netlify-lambda": "^1.4.13",
+    "utf-8-validate": "^5.0.2"
   }
 }
