@@ -4,10 +4,8 @@ import gql from "graphql-tag";
 import styled from "styled-components";
 
 const nameQuery = gql`
-  query people {
-    fields {
-      name
-    }
+  query {
+    hello
   }
 `;
 
@@ -29,6 +27,8 @@ export default function Name() {
   return (
     <Query query={nameQuery}>
       {({ loading, error, data }) => {
+        if (loading) return "Loading...";
+        if (error) return `Error! ${error.message}`;
         if (!loading && !error) {
           return (
             <StyledName>
