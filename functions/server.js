@@ -57,6 +57,7 @@ const typeDefs = gql`
     stat: Int
     description: String
   }
+
   type Insight {
     title: String
     point: [String]

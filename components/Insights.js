@@ -90,4 +90,8 @@ const StyledInsightItemHed = styled.div`
   font-weight: bold;
 `;
 
-export default () => <>{data.map(insight => Insight(insight))}</>;
+export default ({ insights }) => {
+  if (insights) {
+    return <>{data.map(insight => Insight(insight))}</>;
+  }
+};

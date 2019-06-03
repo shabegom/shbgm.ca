@@ -150,9 +150,15 @@ export default withData(props => (
           </Query>
         )}
       </Query>
-      <Insights>
-        <InsightsComponent />
-      </Insights>
+      <Query query={insightsQuery}>
+        {({ loading, data: { insights } }) => {
+          return (
+            <Insights>
+              <InsightsComponent insights={insights} />
+            </Insights>
+          );
+        }}
+      </Query>
     </Grid>
   </>
 ));
