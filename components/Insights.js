@@ -91,7 +91,15 @@ const StyledInsightItemHed = styled.div`
 `;
 
 export default ({ insights }) => {
-  if (insights) {
-    return <>{data.map(insight => Insight(insight))}</>;
-  }
+  let formattedInsights = insights.map(insight => {
+    let title = insight.fields.title;
+    let items = [];
+    insight.fields.point.forEach(p => {
+      insight.fields.pointDescription.forEach(pD => {
+        items.push({ hed: p, blurb: pD });
+      });
+    });
+    return { title, items };
+  });
+  return <>{formattedInsights.map(insight => Insight(insight))}</>;
 };
