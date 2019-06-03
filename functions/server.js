@@ -59,8 +59,8 @@ const typeDefs = gql`
   }
   type Insight {
     title: String
-    points: [String]
-    pointDescriptions: [String]
+    point: [String]
+    pointDescription: [String]
   }
 
   type PersonObject {

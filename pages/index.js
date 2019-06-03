@@ -76,8 +76,8 @@ const insightsQuery = gql`
     insights {
       fields {
         title
-        points
-        pointDescriptions
+        point
+        pointDescription
       }
     }
   }
