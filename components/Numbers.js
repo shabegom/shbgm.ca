@@ -36,13 +36,10 @@ const Number = ({ number, detail }) => (
   </div>
 );
 
-export default () => (
-  <>
-    <StyledNumbers>
-      <Number number="8" detail="Great Teams Built" />
-      <Number number="20" detail="Direct Reports Developed" />
-      <Number number="12+" detail="Successful Projects" />
-      <Number number="Millions" detail="of Users Impacted" />
-    </StyledNumbers>
-  </>
+export default ({ stats }) => (
+  <StyledNumbers>
+    {stats.map(stat => (
+      <Number number={stat.fields.stat} detail={stat.fields.description} />
+    ))}
+  </StyledNumbers>
 );

@@ -57,6 +57,11 @@ const typeDefs = gql`
     stat: Int
     description: String
   }
+  type Insight {
+    title: String
+    points: [String]
+    pointDescriptions: [String]
+  }
 
   type PersonObject {
     sys: Sys
@@ -67,6 +72,10 @@ const typeDefs = gql`
     sys: Sys
     fields: Stat
   }
+  type InsightObject {
+    sys: Sys
+    fields: Insight
+  }
   type Query {
     hello: String
 
@@ -74,6 +83,7 @@ const typeDefs = gql`
     highlights: [HighlightObject]
     jobs: [JobObject]
     stats: [StatObject]
+    insights: [InsightObject]
 
     person(id: String!): Person
   }
@@ -99,6 +109,9 @@ const resolvers = {
     },
     stats: (parent, args, context) => {
       return content.stats;
+    },
+    insights: (parent, args, context) => {
+      return content.insights;
     }
   }
 };
