@@ -128,22 +128,25 @@ export default withData(props => (
         }}
       </Query>
       <Query query={statsQuery}>
-        {({ loading, data: { stats } }) => {
+        {({ loading, data }) => {
           return (
             <Numbers>
-              <NumbersComponent stats={stats} />
+              <NumbersComponent stats={data ? data.stats : null} />
             </Numbers>
           );
         }}
       </Query>
       <Query query={jobQuery}>
-        {({ loading: loadingOne, data: { jobs } }) => (
+        {({ loading: loadingOne, data }) => (
           <Query query={highlightQuery}>
-            {({ loading: loadingTwo, data: { highlights } }) => {
+            {({ loading: loadingTwo, highlightData }) => {
               if (loadingOne || loadingTwo) return <span>loading...</span>;
               return (
                 <Experience>
-                  <ExperienceComponent jobs={jobs} highlights={highlights} />
+                  <ExperienceComponent
+                    jobs={data ? data.jobs : null}
+                    highlights={highlightData ? highlightData.highlights : null}
+                  />
                 </Experience>
               );
             }}
@@ -151,10 +154,10 @@ export default withData(props => (
         )}
       </Query>
       <Query query={insightsQuery}>
-        {({ loading, data: { insights } }) => {
+        {({ loading, data }) => {
           return (
             <Insights>
-              <InsightsComponent insights={insights} />
+              <InsightsComponent insights={data ? data.insights : null} />
             </Insights>
           );
         }}
