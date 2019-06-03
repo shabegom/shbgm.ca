@@ -119,21 +119,21 @@ export default withData(props => (
                 <Headline>
                   <HeadlineComponent headline={person.headline} />
                 </Headline>
-                <Query query={statsQuery}>
-                  {({ loading, data: { stats } }) => {
-                    return (
-                      <Numbers>
-                        <NumbersComponent stats={stats} />
-                      </Numbers>
-                    );
-                  }}
-                </Query>
                 <Blurb>
                   <BlurbComponent description={person.description} />
                 </Blurb>
               </>
             );
           }
+        }}
+      </Query>
+      <Query query={statsQuery}>
+        {({ loading, data: { stats } }) => {
+          return (
+            <Numbers>
+              <NumbersComponent stats={stats} />
+            </Numbers>
+          );
         }}
       </Query>
       <Query query={jobQuery}>

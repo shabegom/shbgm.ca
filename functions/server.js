@@ -54,7 +54,7 @@ const typeDefs = gql`
     description: String
   }
   type Stat {
-    stat: Int
+    stat: String
     description: String
   }
 
