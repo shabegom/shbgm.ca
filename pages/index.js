@@ -50,7 +50,7 @@ const jobQuery = gql`
 `;
 
 const highlightQuery = gql`
-  query {
+  {
     highlights {
       fields {
         title
@@ -94,13 +94,13 @@ export default withData(props => (
                   <FlairComponent flair={person.flair} />
                 </Name>
                 <Headline>
-                  <HeadlineComponent />
+                  <HeadlineComponent headline={person.headline} />
                 </Headline>
                 <Numbers>
                   <NumbersComponent />
                 </Numbers>
                 <Blurb>
-                  <BlurbComponent />
+                  <BlurbComponent description={person.description} />
                 </Blurb>
               </>
             );
@@ -108,21 +108,18 @@ export default withData(props => (
         }}
       </Query>
       <Query query={jobQuery}>
-        {({ loading, err, data }) => {
-          if (loading) {
-            return "loading";
-          }
-          if (err) {
-            return "There has been an erro";
-          }
-          if (!loading && !err && data) {
-            return (
-              <Experience>
-                <ExperienceComponent jobs={data.jobs} />
-              </Experience>
-            );
-          }
-        }}
+        {({ loading: loadingOne, data: { jobs } }) => (
+          <Query query={highlightQuery}>
+            {({ loading: loadingTwo, data: { highlights } }) => {
+              if (loadingOne || loadingTwo) return <span>loading...</span>;
+              return (
+                <Experience>
+                  <ExperienceComponent jobs={jobs} highlights={highlights} />
+                </Experience>
+              );
+            }}
+          </Query>
+        )}
       </Query>
       <Insights>
         <InsightsComponent />

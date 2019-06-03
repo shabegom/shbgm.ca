@@ -14,4 +14,4 @@ const StyledHeadline = styled.div`
   }
 `;
 
-export default () => <StyledHeadline>I Build Great Teams</StyledHeadline>;
+export default ({ headline }) => <StyledHeadline>{headline}</StyledHeadline>;

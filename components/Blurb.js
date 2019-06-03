@@ -8,14 +8,16 @@ const StyledBlurb = styled.div`
   font-size: 0.8rem;
 `;
 
-export default () => (
-  <StyledBlurb>
-    A great team is <strong>high performing and innovative</strong>; creating{" "}
-    <strong>maximum value</strong> while having a great time. I'll build{" "}
-    <strong>aligned, empowered and self-directed teams</strong> to achieve{" "}
-    <strong>success</strong> and a true <strong>competitive advantage</strong>.
-    I'll work to maximize team productivity by{" "}
-    <strong>leading teams to greatness</strong> with a wide toolset of
-    management practices, processes and <i>magic tricks</i>.
-  </StyledBlurb>
+export default ({ description }) => (
+  <>
+    <StyledBlurb>{description}</StyledBlurb>
+  </>
 );
+
+// A great team is <strong>high performing and innovative</strong>; creating{" "}
+// <strong>maximum value</strong> while having a great time. I'll build{" "}
+// <strong>aligned, empowered and self-directed teams</strong> to achieve{" "}
+// <strong>success</strong> and a true <strong>competitive advantage</strong>.
+// I'll work to maximize team productivity by{" "}
+// <strong>leading teams to greatness</strong> with a wide toolset of
+// management practices, processes and <i>magic tricks</i>.

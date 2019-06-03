@@ -131,4 +131,6 @@ const StyledDescription = styled.div`
   font-size: 0.9rem;
 `;
 
-export default () => <>{data.map(company => Company(company))}</>;
+export default ({ jobs, highlights }) => (
+  <>{data.map(company => Company(company))}</>
+);

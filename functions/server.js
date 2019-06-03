@@ -53,9 +53,19 @@ const typeDefs = gql`
     flair: String
     description: String
   }
+  type Stat {
+    stat: Int
+    description: String
+  }
+
   type PersonObject {
     sys: Sys
     fields: Person
+  }
+
+  type StatObject {
+    sys: Sys
+    fields: Stat
   }
   type Query {
     hello: String
@@ -63,6 +73,7 @@ const typeDefs = gql`
     people: [PersonObject]
     highlights: [HighlightObject]
     jobs: [JobObject]
+    stats: [StatObject]
 
     person(id: String!): Person
   }
@@ -85,6 +96,9 @@ const resolvers = {
     },
     jobs: (parent, args, context) => {
       return content.jobs;
+    },
+    stats: (parent, args, context) => {
+      return content.stats;
     }
   }
 };
