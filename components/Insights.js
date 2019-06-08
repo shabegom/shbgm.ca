@@ -44,24 +44,6 @@ const data = [
   }
 ];
 
-const InsightTitle = ({ title }) => (
-  <StyledInsightTitle>{title}</StyledInsightTitle>
-);
-const InsightItems = ({ items }) =>
-  items.map(item => (
-    <StyledInsightItem>
-      <StyledInsightItemHed>{item.hed}</StyledInsightItemHed>
-      <StyledInsightItemBlurb>{item.blurb}</StyledInsightItemBlurb>
-    </StyledInsightItem>
-  ));
-
-const Insight = ({ title, items }) => (
-  <StyledInsight>
-    <InsightTitle title={title} />
-    <InsightItems items={items} />
-  </StyledInsight>
-);
-
 const StyledInsight = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,19 +72,27 @@ const StyledInsightItemHed = styled.div`
   font-weight: bold;
 `;
 
+const InsightTitle = ({ title }) => (
+  <StyledInsightTitle>{title}</StyledInsightTitle>
+);
+const InsightItems = ({ point, pointDescription }) =>
+  point.map((item, i) => (
+    <StyledInsightItem>
+      <StyledInsightItemHed>{item}</StyledInsightItemHed>
+      <StyledInsightItemBlurb>{pointDescription[i]}</StyledInsightItemBlurb>
+    </StyledInsightItem>
+  ));
+
+const Insight = ({ title, point, pointDescription }) => (
+  <StyledInsight>
+    <InsightTitle title={title} />
+    <InsightItems point={point} pointDescription={pointDescription} />
+  </StyledInsight>
+);
+
 export default ({ insights }) => {
   if (insights) {
-    let formattedInsights = insights.map(insight => {
-      let title = insight.fields.title;
-      let items = [];
-      insight.fields.point.forEach(p => {
-        insight.fields.pointDescription.forEach(pD => {
-          items.push({ hed: p, blurb: pD });
-        });
-      });
-      return { title, items };
-    });
-    return <>{formattedInsights.map(insight => Insight(insight))}</>;
+    return <>{insights.map(insight => Insight(insight.fields))}</>;
   }
   return null;
 };
