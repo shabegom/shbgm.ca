@@ -83,18 +83,8 @@ const insightsQuery = gql`
   }
 `;
 
-const GlobalStyle = createGlobalStyle`
-        body {
-            @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100&display=swap');
-            font-family: 'Poppins', sans-serif;
-            color: #070707;
-            background-color: FFFAE7;
-        }
-    `;
-
 export default withData(props => (
   <>
-    <GlobalStyle />
     <Grid>
       <Query query={personQuery}>
         {({ loading, error, data }) => {

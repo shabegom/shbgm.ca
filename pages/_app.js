@@ -1,6 +1,15 @@
 import App, { Container } from "next/app";
 import React from "react";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+        body {
+            @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100&display=swap');
+            font-family: 'Poppins', sans-serif;
+            color: #070707;
+            background-color: FFFAE7;
+        }
+    `;
 
 const theme = {
   textColor: "#070707",
@@ -26,6 +35,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <Container>
+        <GlobalStyle />
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>
