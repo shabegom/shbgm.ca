@@ -41,17 +41,19 @@ const highlightQuery = gql`
 
 export default () => (
   <Query query={jobQuery}>
-    {({ data: { jobs } }) => (
+    {({ data }) => (
       <Query query={highlightQuery}>
-        {({ loading, data: { highlights } }) => {
-          if (!loading) {
+        {({ loading, data: highlightData }) => {
+          if (!loading && data && highlightData) {
             return (
               <Experience>
-                <ExperienceComponent jobs={jobs ? jobs : []} />
+                <ExperienceComponent jobs={data.jobs ? data.jobs : []} />
                 <HighlightsComponent
-                  highlights={highlights ? highlights : []}
+                  highlights={
+                    highlightData.highlights ? highlightData.highlights : []
+                  }
                   jobId={
-                    jobs
+                    data.jobs
                       ? jobs.map(job =>
                           job.fields.highlight.map(
                             highlight => highlight.sys.id

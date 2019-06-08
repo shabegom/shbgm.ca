@@ -25,7 +25,7 @@ import BlurbComponent from "./Blurb";
 export default () => (
   <Query query={personQuery}>
     {({ data }) => {
-      if (data.people) {
+      if (data && data.people) {
         let person = data.people[0].fields;
         let first = person.name.split(" ")[0];
         let last = person.name.split(" ")[1];
