@@ -15,7 +15,10 @@ const typeDefs = gql`
     role: [String]
     description: String
     company: String
-    highlights: [HighlightObject]
+    highlight: [HighlightLink]
+  }
+  type HighlightLink {
+    sys: LinkSys
   }
   type JobObject {
     sys: Sys
@@ -86,7 +89,11 @@ const typeDefs = gql`
     stats: [StatObject]
     insights: [InsightObject]
 
-    person(id: String!): Person
+    person(id: String!): PersonObject
+    highlight(id: String!): HighlightObject
+    job(id: String!): JobObject
+    stat(id: String!): StatObject
+    insight(id: String!): InsightObject
   }
 
 `;
@@ -99,9 +106,7 @@ const resolvers = {
     people: (parent, args, context) => {
       return content.people;
     },
-    person: (parent, args, context) => {
-      return content.person(args.id);
-    },
+    person: (parent, { id }) => ({ id }),
     highlights: (parent, args, context) => {
       return content.highlights;
     },
@@ -113,6 +118,9 @@ const resolvers = {
     },
     insights: (parent, args, context) => {
       return content.insights;
+    },
+    highlight: (parent, args, context) => {
+      return content.highlight(args.id);
     }
   }
 };

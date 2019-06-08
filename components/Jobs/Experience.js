@@ -86,12 +86,19 @@ const data = [
   }
 ];
 
-const Company = ({ name, key, start, end, role, desc, highlights }) => (
+const Company = ({
+  company,
+  key,
+  yearStarted,
+  yearEnded,
+  role,
+  description,
+  children
+}) => (
   <>
-    <CompanyName name={name} />
-    <Year start={start} end={end} role={role} />
-    <CompanyDescription desc={desc} />
-    <Highlights highlights={highlights} />
+    <CompanyName name={company} />
+    <Year start={yearStarted} end={yearEnded} role={role} />
+    <CompanyDescription desc={description} />
   </>
 );
 
@@ -99,7 +106,7 @@ const CompanyName = ({ name }) => <StyledName>{name}</StyledName>;
 
 const Year = ({ start, end, role }) => (
   <StyledYear>
-    {start} - {end} | {role}
+    {start} - {end} | {role.join(" -> ")}
   </StyledYear>
 );
 
@@ -131,6 +138,6 @@ const StyledDescription = styled.div`
   font-size: 0.9rem;
 `;
 
-export default ({ jobs, highlights }) => (
-  <>{data.map(company => Company(company))}</>
+export default ({ jobs }) => (
+  <>{jobs.map(company => Company(company.fields))}</>
 );

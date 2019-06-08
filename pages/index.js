@@ -1,44 +1,23 @@
 import React, { useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import withData from "../lib/apollo.js";
-import { Grid, Numbers, Experience, Insights } from "../lib/layout";
+import { Grid, Numbers, Insights } from "../lib/layout";
 
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import NumbersComponent from "../components/Numbers";
-import ExperienceComponent from "../components/Experience";
 import InsightsComponent from "../components/Insights";
 import Fonts from "../components/Fonts";
 import Person from "../components/Person/";
-
-const jobQuery = gql`
-  {
-    jobs {
-      fields {
-        company
-        yearStarted
-        role
-        description
-      }
-    }
-  }
-`;
-
-const highlightQuery = gql`
-  {
-    highlights {
-      fields {
-        title
-        detail
-      }
-    }
-  }
-`;
+import Jobs from "../components/Jobs/";
 
 const statsQuery = gql`
   {
     stats {
+      sys {
+        id
+      }
       fields {
         stat
         description
@@ -76,22 +55,7 @@ export default withData(props => {
             );
           }}
         </Query>
-        <Query query={jobQuery}>
-          {({ data }) => (
-            <Query query={highlightQuery}>
-              {({ loading: loadingTwo, highlightData }) => {
-                return (
-                  <Experience>
-                    <ExperienceComponent
-                      jobs={data ? data.jobs : null}
-                      highlights={highlightData ? highlightData.highlights : []}
-                    />
-                  </Experience>
-                );
-              }}
-            </Query>
-          )}
-        </Query>
+        <Jobs />
         <Query query={insightsQuery}>
           {({ data }) => {
             return (
