@@ -37,11 +37,19 @@ const Number = ({ number, detail }) => (
 );
 
 export default ({ stats }) => (
-  <StyledNumbers>
-    {stats
-      ? stats.map(stat => (
-          <Number number={stat.fields.stat} detail={stat.fields.description} />
-        ))
-      : ""}
-  </StyledNumbers>
+  <>
+    {stats ? (
+      <StyledNumbers>
+        {stats.map(stat => (
+          <Number
+            key={stat.sys.id}
+            number={stat.fields.stat}
+            detail={stat.fields.description}
+          />
+        ))}
+      </StyledNumbers>
+    ) : (
+      ""
+    )}
+  </>
 );
