@@ -1,41 +1,16 @@
 import React, { useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import withData from "../lib/apollo.js";
-import {
-  Grid,
-  Numbers,
-  Name,
-  Headline,
-  Blurb,
-  Experience,
-  Insights,
-  Tagline
-} from "../lib/layout";
+import { Grid, Numbers, Experience, Insights } from "../lib/layout";
 
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import NumbersComponent from "../components/Numbers";
-import NameComponent from "../components/Name";
-import FlairComponent from "../components/Flair";
-import HeadlineComponent from "../components/Headline";
-import BlurbComponent from "../components/Blurb";
 import ExperienceComponent from "../components/Experience";
 import InsightsComponent from "../components/Insights";
 import Fonts from "../components/Fonts";
-
-const personQuery = gql`
-  query {
-    people {
-      fields {
-        name
-        headline
-        flair
-        description
-      }
-    }
-  }
-`;
+import Person from "../components/Person/";
 
 const jobQuery = gql`
   {
@@ -91,50 +66,25 @@ export default withData(props => {
   return (
     <>
       <Grid>
-        <Query query={personQuery}>
-          {({ loading, error, data }) => {
-            if (!loading && !error && data.people) {
-              let person = data.people[0].fields;
-              let first = person.name.split(" ")[0];
-              let last = person.name.split(" ")[1];
-              return (
-                <>
-                  <Name>
-                    <NameComponent first={first} last={last} />
-                    <FlairComponent flair={person.flair} />
-                  </Name>
-                  <Headline>
-                    <HeadlineComponent headline={person.headline} />
-                  </Headline>
-                  <Blurb>
-                    <BlurbComponent description={person.description} />
-                  </Blurb>
-                </>
-              );
-            }
-          }}
-        </Query>
+        <Person />
         <Query query={statsQuery}>
-          {({ loading, data }) => {
+          {({ data }) => {
             return (
               <Numbers>
-                <NumbersComponent stats={data ? data.stats : null} />
+                <NumbersComponent stats={data ? data.stats : []} />
               </Numbers>
             );
           }}
         </Query>
         <Query query={jobQuery}>
-          {({ loading: loadingOne, data }) => (
+          {({ data }) => (
             <Query query={highlightQuery}>
               {({ loading: loadingTwo, highlightData }) => {
-                if (loadingOne || loadingTwo) return <span>loading...</span>;
                 return (
                   <Experience>
                     <ExperienceComponent
                       jobs={data ? data.jobs : null}
-                      highlights={
-                        highlightData ? highlightData.highlights : null
-                      }
+                      highlights={highlightData ? highlightData.highlights : []}
                     />
                   </Experience>
                 );
@@ -143,10 +93,10 @@ export default withData(props => {
           )}
         </Query>
         <Query query={insightsQuery}>
-          {({ loading, data }) => {
+          {({ data }) => {
             return (
               <Insights>
-                <InsightsComponent insights={data ? data.insights : null} />
+                <InsightsComponent insights={data ? data.insights : []} />
               </Insights>
             );
           }}
