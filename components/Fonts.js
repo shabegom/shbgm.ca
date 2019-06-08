@@ -3,7 +3,7 @@ import FontFaceObserver from "fontfaceobserver";
 export default () => {
   const link = document.createElement("link");
   link.href =
-    "https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100";
+    "https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100&display=swap";
   link.rel = "stylesheet";
 
   document.head.appendChild(link);

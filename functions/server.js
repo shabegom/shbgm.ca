@@ -97,6 +97,7 @@ const resolvers = {
       return "Hello, world!";
     },
     people: (parent, args, context) => {
+      content.save;
       return content.people;
     },
     person: (parent, args, context) => {
