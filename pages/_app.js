@@ -4,7 +4,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
         html {
-            @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100&display=swap');
+            @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins|Quicksand:300|Yantramanav:100');
             font-family: 'Poppins', sans-serif;
             color: #070707;
             background-color: FFFAE7;

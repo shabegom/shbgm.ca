@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import withData from "../lib/apollo.js";
 import {
@@ -22,6 +22,7 @@ import HeadlineComponent from "../components/Headline";
 import BlurbComponent from "../components/Blurb";
 import ExperienceComponent from "../components/Experience";
 import InsightsComponent from "../components/Insights";
+import Fonts from "../components/Fonts";
 
 const personQuery = gql`
   query {
@@ -83,75 +84,82 @@ const insightsQuery = gql`
   }
 `;
 
-export default withData(props => (
-  <>
-    <Grid>
-      <Query query={personQuery}>
-        {({ loading, error, data }) => {
-          if (loading)
-            return (
-              <img
-                style={{ margin: "10%", width: "80%", height: "auto" }}
-                src="https://media.giphy.com/media/17dYuJvJX5P8s/giphy.gif"
-              />
-            );
-          if (error) return `Something Appears to be wrong!`;
-          if (!loading && !error && data.people) {
-            let person = data.people[0].fields;
-            let first = person.name.split(" ")[0];
-            let last = person.name.split(" ")[1];
-            return (
-              <>
-                <Name>
-                  <NameComponent first={first} last={last} />
-                  <FlairComponent flair={person.flair} />
-                </Name>
-                <Headline>
-                  <HeadlineComponent headline={person.headline} />
-                </Headline>
-                <Blurb>
-                  <BlurbComponent description={person.description} />
-                </Blurb>
-              </>
-            );
-          }
-        }}
-      </Query>
-      <Query query={statsQuery}>
-        {({ loading, data }) => {
-          return (
-            <Numbers>
-              <NumbersComponent stats={data ? data.stats : null} />
-            </Numbers>
-          );
-        }}
-      </Query>
-      <Query query={jobQuery}>
-        {({ loading: loadingOne, data }) => (
-          <Query query={highlightQuery}>
-            {({ loading: loadingTwo, highlightData }) => {
-              if (loadingOne || loadingTwo) return <span>loading...</span>;
+export default withData(props => {
+  useEffect(() => {
+    Fonts();
+  }, []);
+  return (
+    <>
+      <Grid>
+        <Query query={personQuery}>
+          {({ loading, error, data }) => {
+            if (loading)
               return (
-                <Experience>
-                  <ExperienceComponent
-                    jobs={data ? data.jobs : null}
-                    highlights={highlightData ? highlightData.highlights : null}
-                  />
-                </Experience>
+                <img
+                  style={{ margin: "10%", width: "80%", height: "auto" }}
+                  src="https://media.giphy.com/media/17dYuJvJX5P8s/giphy.gif"
+                />
               );
-            }}
-          </Query>
-        )}
-      </Query>
-      <Query query={insightsQuery}>
-        {({ loading, data }) => {
-          return (
-            <Insights>
-              <InsightsComponent insights={data ? data.insights : null} />
-            </Insights>
-          );
-        }}
-      </Query>
-    </Grid>
-  </>
-));
+            if (error) return `Something Appears to be wrong!`;
+            if (!loading && !error && data.people) {
+              let person = data.people[0].fields;
+              let first = person.name.split(" ")[0];
+              let last = person.name.split(" ")[1];
+              return (
+                <>
+                  <Name>
+                    <NameComponent first={first} last={last} />
+                    <FlairComponent flair={person.flair} />
+                  </Name>
+                  <Headline>
+                    <HeadlineComponent headline={person.headline} />
+                  </Headline>
+                  <Blurb>
+                    <BlurbComponent description={person.description} />
+                  </Blurb>
+                </>
+              );
+            }
+          }}
+        </Query>
+        <Query query={statsQuery}>
+          {({ loading, data }) => {
+            return (
+              <Numbers>
+                <NumbersComponent stats={data ? data.stats : null} />
+              </Numbers>
+            );
+          }}
+        </Query>
+        <Query query={jobQuery}>
+          {({ loading: loadingOne, data }) => (
+            <Query query={highlightQuery}>
+              {({ loading: loadingTwo, highlightData }) => {
+                if (loadingOne || loadingTwo) return <span>loading...</span>;
+                return (
+                  <Experience>
+                    <ExperienceComponent
+                      jobs={data ? data.jobs : null}
+                      highlights={
+                        highlightData ? highlightData.highlights : null
+                      }
+                    />
+                  </Experience>
+                );
+              }}
+            </Query>
+          )}
+        </Query>
+        <Query query={insightsQuery}>
+          {({ loading, data }) => {
+            return (
+              <Insights>
+                <InsightsComponent insights={data ? data.insights : null} />
+              </Insights>
+            );
+          }}
+        </Query>
+      </Grid>
+    </>
+  );
+});
