@@ -54,7 +54,7 @@ export default () => (
                   }
                   jobId={
                     data.jobs
-                      ? jobs.map(job =>
+                      ? data.jobs.map(job =>
                           job.fields.highlight.map(
                             highlight => highlight.sys.id
                           )
