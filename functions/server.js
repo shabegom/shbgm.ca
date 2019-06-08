@@ -104,20 +104,20 @@ const resolvers = {
       return "Hello, world!";
     },
     people: (parent, args, context) => {
-      return content.people;
+      return content.people.then(p => p);
     },
     person: (parent, { id }) => ({ id }),
     highlights: (parent, args, context) => {
-      return content.highlights;
+      return content.highlights.then(h => h);
     },
     jobs: (parent, args, context) => {
-      return content.jobs;
+      return content.jobs.then(j => j);
     },
     stats: (parent, args, context) => {
-      return content.stats;
+      return content.stats.then(s => s);
     },
     insights: (parent, args, context) => {
-      return content.insights;
+      return content.insights.then(i => i);
     },
     highlight: (parent, args, context) => {
       return content.highlight(args.id);
