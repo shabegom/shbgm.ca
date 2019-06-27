@@ -10,6 +10,9 @@ import HighlightsComponent from "./Highlights";
 const jobQuery = gql`
   {
     jobs {
+      sys {
+        id
+      }
       fields {
         company
         yearStarted
@@ -34,10 +37,25 @@ const highlightQuery = gql`
       fields {
         title
         detail
+        job {
+          sys {
+            id
+          }
+        }
       }
     }
   }
 `;
+
+const filterHighlights = (job, highlights) => {
+  let highlightsOnJob = job.fields.highlight.map(highlight => highlight.sys.id);
+  let highlightIds = highlights.map(highlight => highlight.sys.id);
+  let filteredHighlights = highlightsOnJob.filter(element =>
+    highlightIds.includes(element)
+  );
+
+  return filteredHighlights;
+};
 
 export default () => (
   <Query query={jobQuery}>
@@ -47,21 +65,13 @@ export default () => (
           if (!loading && data && highlightData) {
             return (
               <Experience>
-                <ExperienceComponent jobs={data.jobs ? data.jobs : []} />
-                <HighlightsComponent
-                  highlights={
-                    highlightData.highlights ? highlightData.highlights : []
-                  }
-                  jobId={
-                    data.jobs
-                      ? data.jobs.map(job =>
-                          job.fields.highlight.map(
-                            highlight => highlight.sys.id
-                          )
-                        )
-                      : []
-                  }
-                />
+                <ExperienceComponent jobs={data.jobs ? data.jobs : []}>
+                  <HighlightsComponent
+                    highlights={
+                      highlightData.highlights ? highlightData.highlights : []
+                    }
+                  />
+                </ExperienceComponent>
               </Experience>
             );
           }

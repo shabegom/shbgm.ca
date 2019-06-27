@@ -21,30 +21,28 @@ const StyledHighlightItems = styled.ul`
   font-size: 0.7rem;
 `;
 
-const Highlight = (id, { title, detail }) => {
+const Highlight = ({ title, detail }) => {
   return (
     <>
       <h3>
         <HighlightTitle title={title} />
       </h3>
       <StyledHighlightItems>
-        <HighlightItems id={id++} items={detail ? detail : []} />
+        <HighlightItems items={detail ? detail : []} />
       </StyledHighlightItems>
     </>
   );
 };
 
-const HighlightItems = ({ id, items }) => (
-  <>{items.map(item => <li key={id}>{item}</li>)}</>
-);
+const HighlightItems = ({ items }) => <>{items.map(item => <li>{item}</li>)}</>;
 
 export default ({ highlights, jobId }) => {
-  let filteredHighlights = highlights.filter(highlight =>
-    jobId.map(id => id.join("") === highlight.sys.id)
-  );
-  let i = 0;
+  console.log(jobId);
+  let filteredHighlights = highlights.filter(highlight => {
+    console.log(highlight.fields.job.sys.id);
+    return highlight;
+  });
   return filteredHighlights.map(highlight => {
-    i++;
-    return Highlight(i, highlight.fields);
+    return Highlight(highlight.fields);
   });
 };

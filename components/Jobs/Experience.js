@@ -86,28 +86,23 @@ const data = [
   }
 ];
 
-const Company = ({
-  company,
-  key,
-  yearStarted,
-  yearEnded,
-  role,
-  description,
+const Company = (
+  { company, key, yearStarted, yearEnded, role, description },
+  id,
   children
-}) => (
+) => (
   <>
     <CompanyName name={company} />
     <Year start={yearStarted} end={yearEnded} role={role} />
     <CompanyDescription desc={description} />
+    {React.cloneElement(children, { jobId: id })}
   </>
 );
 
 const CompanyName = ({ name }) => <StyledName>{name}</StyledName>;
 
 const Year = ({ start, end, role }) => (
-  <StyledYear>
-    {start} - {end} | {role.join(" -> ")}
-  </StyledYear>
+  <StyledYear>{role.join(" | ")}</StyledYear>
 );
 
 const CompanyDescription = ({ desc }) => (
@@ -138,6 +133,10 @@ const StyledDescription = styled.div`
   font-size: 0.9rem;
 `;
 
-export default ({ jobs }) => (
-  <>{jobs.map(company => Company(company.fields))}</>
+export default props => (
+  <>
+    {props.jobs.map(company =>
+      Company(company.fields, company.sys.id, props.children)
+    )}
+  </>
 );
