@@ -42,7 +42,7 @@ export default ({ stats }) => (
       <StyledNumbers>
         {stats.map(stat => (
           <Number
-            key={stat.sys.id}
+            key={stat.fields.number}
             number={stat.fields.stat}
             detail={stat.fields.description}
           />

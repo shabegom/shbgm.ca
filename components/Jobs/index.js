@@ -47,16 +47,6 @@ const highlightQuery = gql`
   }
 `;
 
-const filterHighlights = (job, highlights) => {
-  let highlightsOnJob = job.fields.highlight.map(highlight => highlight.sys.id);
-  let highlightIds = highlights.map(highlight => highlight.sys.id);
-  let filteredHighlights = highlightsOnJob.filter(element =>
-    highlightIds.includes(element)
-  );
-
-  return filteredHighlights;
-};
-
 export default () => (
   <Query query={jobQuery}>
     {({ data }) => (

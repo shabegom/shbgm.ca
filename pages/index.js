@@ -15,12 +15,10 @@ import Jobs from "../components/Jobs/";
 const statsQuery = gql`
   {
     stats {
-      sys {
-        id
-      }
       fields {
         stat
         description
+        order
       }
     }
   }

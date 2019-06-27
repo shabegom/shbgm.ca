@@ -63,6 +63,7 @@ const typeDefs = gql`
   type Stat {
     stat: String
     description: String
+    order: Int
   }
 
   type Insight {

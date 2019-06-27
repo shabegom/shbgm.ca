@@ -36,13 +36,7 @@ const Highlight = ({ title, detail }) => {
 
 const HighlightItems = ({ items }) => <>{items.map(item => <li>{item}</li>)}</>;
 
-export default ({ highlights, jobId }) => {
-  console.log(jobId);
-  let filteredHighlights = highlights.filter(highlight => {
-    console.log(highlight.fields.job.sys.id);
-    return highlight;
-  });
-  return filteredHighlights.map(highlight => {
-    return Highlight(highlight.fields);
-  });
-};
+export default ({ highlights, jobId }) =>
+  highlights
+    .filter(highlight => highlight.fields.job.sys.id === jobId)
+    .map(highlight => Highlight(highlight.fields));
