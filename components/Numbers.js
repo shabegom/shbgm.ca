@@ -42,7 +42,7 @@ export default ({ stats }) => (
       <StyledNumbers>
         {stats.map(stat => (
           <Number
-            key={stat.fields.number}
+            key={stat.fields.order}
             number={stat.fields.stat}
             detail={stat.fields.description}
           />

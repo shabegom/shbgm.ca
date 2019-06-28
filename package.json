@@ -22,8 +22,13 @@
   "bugs": {
     "url": "https://github.com/shabegom/shbgm.ca/issues"
   },
+  "browser": {
+    "html-pdf": false
+  },
   "homepage": "https://github.com/shabegom/shbgm.ca#readme",
   "dependencies": {
+    "@progress/kendo-drawing": "^1.5.12",
+    "@progress/kendo-react-pdf": "^3.2.2",
     "apollo-server-lambda": "^2.5.0",
     "contentful": "^7.6.0",
     "dotenv": "^8.0.0",

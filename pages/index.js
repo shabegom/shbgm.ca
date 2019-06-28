@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { createGlobalStyle } from "styled-components";
 import withData from "../lib/apollo.js";
+import { PDFExport } from "@progress/kendo-react-pdf";
 import { Grid, Numbers, Insights } from "../lib/layout";
 
 import { Query } from "react-apollo";
@@ -37,33 +37,46 @@ const insightsQuery = gql`
 `;
 
 export default withData(props => {
+  let pdfExportComponent;
+  const exportPDF = () => {
+    pdfExportComponent.save();
+  };
   useEffect(() => {
     Fonts();
   }, []);
   return (
     <>
-      <Grid>
-        <Person />
-        <Query query={statsQuery}>
-          {({ data }) => {
-            return (
-              <Numbers>
-                <NumbersComponent stats={data ? data.stats : []} />
-              </Numbers>
-            );
-          }}
-        </Query>
-        <Jobs />
-        <Query query={insightsQuery}>
-          {({ data }) => {
-            return (
-              <Insights>
-                <InsightsComponent insights={data ? data.insights : []} />
-              </Insights>
-            );
-          }}
-        </Query>
-      </Grid>
+      <button onClick={exportPDF}>Export PDF Version</button>
+      <PDFExport
+        ref={component => (pdfExportComponent = component)}
+        margin="2cm"
+        author="Sam Morrison"
+        fileName="Morrison-Samuel-Resume.pdf"
+        title="Samuel Morrison - Resume"
+      >
+        <Grid>
+          <Person />
+          <Query query={statsQuery}>
+            {({ data }) => {
+              return (
+                <Numbers>
+                  <NumbersComponent stats={data ? data.stats : []} />
+                </Numbers>
+              );
+            }}
+          </Query>
+          <Query query={insightsQuery}>
+            {({ data }) => {
+              return (
+                <Insights>
+                  <InsightsComponent insights={data ? data.insights : []} />
+                </Insights>
+              );
+            }}
+          </Query>
+          <Jobs />
+        </Grid>
+      </PDFExport>
     </>
   );
 });
