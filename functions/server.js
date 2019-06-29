@@ -5,7 +5,10 @@ const typeDefs = gql`
   type Highlight {
     title: String
     detail: [String]
+<<<<<<< HEAD
     job: JobLink
+=======
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
   }
   type HighlightObject {
     sys: Sys
@@ -16,6 +19,7 @@ const typeDefs = gql`
     role: [String]
     description: String
     company: String
+<<<<<<< HEAD
     highlight: [HighlightLink]
   }
   type JobLink {
@@ -23,6 +27,9 @@ const typeDefs = gql`
   }
   type HighlightLink {
     sys: LinkSys
+=======
+    highlight: [HighlightObject]
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
   }
   type JobObject {
     sys: Sys
@@ -56,6 +63,7 @@ const typeDefs = gql`
   type Person {
     name: String
     headline: String
+<<<<<<< HEAD
     jobs: [JobObject]
     flair: String
     description: String
@@ -72,10 +80,17 @@ const typeDefs = gql`
     pointDescription: [String]
   }
 
+=======
+    job: [JobObject]
+    flair: String
+    description: String
+  }
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
   type PersonObject {
     sys: Sys
     fields: Person
   }
+<<<<<<< HEAD
 
   type StatObject {
     sys: Sys
@@ -85,12 +100,15 @@ const typeDefs = gql`
     sys: Sys
     fields: Insight
   }
+=======
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
   type Query {
     hello: String
 
     people: [PersonObject]
     highlights: [HighlightObject]
     jobs: [JobObject]
+<<<<<<< HEAD
     stats: [StatObject]
     insights: [InsightObject]
 
@@ -99,6 +117,10 @@ const typeDefs = gql`
     job(id: String!): JobObject
     stat(id: String!): StatObject
     insight(id: String!): InsightObject
+=======
+
+    person(id: String!): [Person]
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
   }
 
 `;
@@ -111,12 +133,19 @@ const resolvers = {
     people: (parent, args, context) => {
       return content.people;
     },
+<<<<<<< HEAD
     person: (parent, { id }) => ({ id }),
+=======
+    person: (parent, args, context) => {
+      return content.person(args.id);
+    },
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
     highlights: (parent, args, context) => {
       return content.highlights;
     },
     jobs: (parent, args, context) => {
       return content.jobs;
+<<<<<<< HEAD
     },
     stats: (parent, args, context) => {
       return content.stats;
@@ -126,17 +155,26 @@ const resolvers = {
     },
     highlight: (parent, args, context) => {
       return content.highlight(args.id);
+=======
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
     }
   }
 };
 
 const server = new ApolloServer({
+<<<<<<< HEAD
   cors: {
     origin: "*",
     credentials: true
   },
+=======
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
   typeDefs,
   resolvers
 });
 
+<<<<<<< HEAD
 exports.handler = server.createHandler({});
+=======
+exports.handler = server.createHandler();
+>>>>>>> 0088f4ce6abf7c1fab9a6c37a4e1e37be68c2e42
