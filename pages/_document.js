@@ -30,6 +30,11 @@ const GlobalStyle = createGlobalStyle`
          .k-pdf-export .noExport {
         display: none;
       } 
+      body {
+  font-family: "Poppins", sans-serif;
+  color: #070707;
+  background-color: FFFAE7;
+      }
 `;
 
 export default class MyDocument extends Document {

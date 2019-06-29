@@ -1,67 +1,22 @@
 import React, { useEffect } from "react";
 import withData from "../lib/apollo.js";
-import { PDFExport } from "@progress/kendo-react-pdf";
-import { Grid, Numbers, Insights } from "../lib/layout";
+import { Grid } from "../lib/layout";
 
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-
-import NumbersComponent from "../components/Numbers";
-import InsightsComponent from "../components/Insights";
-import ContactComponent from "../components/Contact";
-import Fonts from "../components/Fonts";
+import Contact from "../components/Contact";
+import Numbers from "../components/Numbers";
 import Person from "../components/Person/";
 import Jobs from "../components/Jobs/";
-
-const statsQuery = gql`
-  {
-    stats {
-      fields {
-        stat
-        description
-        order
-      }
-    }
-  }
-`;
-
-const insightsQuery = gql`
-  {
-    insights {
-      fields {
-        title
-        point
-        pointDescription
-      }
-    }
-  }
-`;
+import Insights from "../components/Insights/";
 
 export default withData(props => {
   return (
     <>
       <Grid>
         <Person />
-        <Query query={statsQuery}>
-          {({ data }) => {
-            return (
-              <Numbers>
-                <NumbersComponent stats={data ? data.stats : []} />
-              </Numbers>
-            );
-          }}
-        </Query>
-        <Query query={insightsQuery}>
-          {({ data }) => {
-            return (
-              <Insights>
-                <InsightsComponent insights={data ? data.insights : []} />
-              </Insights>
-            );
-          }}
-        </Query>
+        <Numbers />
         <Jobs />
-        <ContactComponent />
+        <Contact />
+        <Insights />
       </Grid>
     </>
   );
