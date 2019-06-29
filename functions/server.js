@@ -23,6 +23,7 @@ const typeDefs = gql`
   }
   type HighlightLink {
     sys: LinkSys
+    highlight: [HighlightObject]
   }
   type JobObject {
     sys: Sys
@@ -72,6 +73,10 @@ const typeDefs = gql`
     pointDescription: [String]
   }
 
+    job: [JobObject]
+    flair: String
+    description: String
+  }
   type PersonObject {
     sys: Sys
     fields: Person
