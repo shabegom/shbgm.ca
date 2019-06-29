@@ -35,21 +35,26 @@ const Button = styled.button`
   }
 `;
 
+const Email = styled.a`
+  color: ${props => props.theme.strongRedAccent};
+`;
+
 export default () => {
   const { exportPDF } = useContext(PDFContext);
   return (
     <Contact>
       <StyledContact>
+        <Button className="noExport" onClick={exportPDF}>
+          Download this page as a PDF{" "}
+        </Button>
         <Title>Get in touch</Title>
         Want to work together and make something cool?
         <br />
         <br />
-        Shoot me an email: <a href="mailto:sam@shbgm.ca">sam[at]shbgm.ca</a>
+        Shoot me an email:{" "}
+        <Email href="mailto:sam@shbgm.ca">sam[at]shbgm.ca</Email>
         <br />
         <br />
-        <Button className="noExport" onClick={exportPDF}>
-          Download this page as a PDF{" "}
-        </Button>
       </StyledContact>
     </Contact>
   );
