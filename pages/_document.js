@@ -1,15 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet, createGlobalStyle } from "styled-components";
 
-const theme = {
-  textColor: "#070707",
-  altTextColor: "#f5f5f5",
-  redAccent: "#D97D79",
-  strongRedAccent: "#C73D37",
-  purpleAccent: "#f4c9c9",
-  greyAccent: "#ede0e0"
-};
-
 const GlobalStyle = createGlobalStyle`
 @font-face {
     font-family: 'Poppins';
@@ -67,9 +58,9 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <meta charSet="utf-8" />
+          <GlobalStyle />
         </Head>
         <body>
-          <GlobalStyle />
           <Main />
           <NextScript />
         </body>

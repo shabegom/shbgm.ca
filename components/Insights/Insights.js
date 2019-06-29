@@ -26,7 +26,6 @@ const StyledInsightItemBlurb = styled.div`
 
 const StyledInsightItemHed = styled.div`
   font-size: 0.9rem;
-  font-weight: bold;
 `;
 
 const InsightTitle = ({ title }) => (

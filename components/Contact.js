@@ -37,6 +37,7 @@ const Button = styled.button`
 
 const Email = styled.a`
   color: ${props => props.theme.strongRedAccent};
+  text-decoration: none;
 `;
 
 export default () => {
