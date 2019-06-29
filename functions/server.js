@@ -73,10 +73,6 @@ const typeDefs = gql`
     pointDescription: [String]
   }
 
-    job: [JobObject]
-    flair: String
-    description: String
-  }
   type PersonObject {
     sys: Sys
     fields: Person

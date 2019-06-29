@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Contact } from "../lib/layout";
+import PDFContext from "../contexts/pdfContext";
 
 const StyledContact = styled.div`
   margin: 10px;
@@ -33,19 +35,22 @@ const Button = styled.button`
   }
 `;
 
-export default () => (
-  <Contact>
-    <StyledContact>
-      <Title>Get in touch</Title>
-      Want to work together and make something cool?
-      <br />
-      <br />
-      Shoot me an email: <a href="mailto:sam@shbgm.ca">sam[at]shbgm.ca</a>
-      <br />
-      <br />
-      <Button className="noExport" onClick={exportPDF}>
-        Download this page as a PDF{" "}
-      </Button>
-    </StyledContact>
-  </Contact>
-);
+export default () => {
+  const { exportPDF } = useContext(PDFContext);
+  return (
+    <Contact>
+      <StyledContact>
+        <Title>Get in touch</Title>
+        Want to work together and make something cool?
+        <br />
+        <br />
+        Shoot me an email: <a href="mailto:sam@shbgm.ca">sam[at]shbgm.ca</a>
+        <br />
+        <br />
+        <Button className="noExport" onClick={exportPDF}>
+          Download this page as a PDF{" "}
+        </Button>
+      </StyledContact>
+    </Contact>
+  );
+};
