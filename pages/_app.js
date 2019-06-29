@@ -1,6 +1,19 @@
 import App, { Container } from "next/app";
 import React from "react";
+import ReactDOM from "react-dom";
 import { ThemeProvider } from "styled-components";
+import { PDFExportProvider, PDFExportConsumer } from "../contexts/pdfContext";
+import { PDFExport } from "@progress/kendo-react-pdf";
+
+let pdfExportComponent;
+
+const pdfExportObject = {
+  pdfExportComponent,
+  exportPDF: () => {
+    pdfExportComponent.save();
+  },
+  setPDFExportComponent: component => (pdfExportComponent = component)
+};
 
 const theme = {
   textColor: "#070707",
@@ -26,9 +39,25 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <Container>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <PDFExportProvider value={pdfExportObject}>
+          <PDFExportConsumer>
+            {({ setPDFExportComponent }) => (
+              <ThemeProvider theme={theme}>
+                <PDFExport
+                  ref={component => {
+                    return setPDFExportComponent(component);
+                  }}
+                  margin="2cm"
+                  author="Sam Morrison"
+                  fileName="Morrison-Samuel-Resume.pdf"
+                  title="Samuel Morrison - Resume"
+                >
+                  <Component {...pageProps} />
+                </PDFExport>
+              </ThemeProvider>
+            )}
+          </PDFExportConsumer>
+        </PDFExportProvider>
       </Container>
     );
   }
