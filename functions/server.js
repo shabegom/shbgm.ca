@@ -85,6 +85,7 @@ const typeDefs = gql`
     sys: Sys
     fields: Insight
   }
+
   type Query {
     hello: String
 
@@ -111,7 +112,9 @@ const resolvers = {
     people: (parent, args, context) => {
       return content.people;
     },
-    person: (parent, { id }) => ({ id }),
+    person: (parent, args, context) => {
+      return content.person(args.id);
+    },
     highlights: (parent, args, context) => {
       return content.highlights;
     },
