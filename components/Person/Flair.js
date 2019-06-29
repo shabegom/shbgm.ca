@@ -10,4 +10,4 @@ const StyledTagline = styled.div`
   }
 `;
 
-export default () => <StyledTagline>(They/Them)</StyledTagline>;
+export default ({ flair }) => <StyledTagline>{flair}</StyledTagline>;

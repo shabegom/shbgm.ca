@@ -15,8 +15,8 @@ const StyledMorrison = styled.span`
   color: ${props => props.theme.strongRedAccent};
 `;
 
-export default () => (
+export default ({ first, last }) => (
   <StyledName>
-    <StyledSam>Samuel</StyledSam> <StyledMorrison>Morrison</StyledMorrison>
+    <StyledSam>{first}</StyledSam> <StyledMorrison>{last}</StyledMorrison>
   </StyledName>
 );
