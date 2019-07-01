@@ -58,9 +58,9 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <meta charSet="utf-8" />
-          <GlobalStyle />
         </Head>
         <body>
+          <GlobalStyle />
           <Main />
           <NextScript />
         </body>

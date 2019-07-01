@@ -6,6 +6,7 @@ const typeDefs = gql`
     title: String
     detail: [String]
     job: JobLink
+    order: Int
   }
   type HighlightObject {
     sys: Sys
@@ -16,6 +17,7 @@ const typeDefs = gql`
     role: [String]
     description: String
     company: String
+    order: Int
     highlight: [HighlightLink]
   }
   type JobLink {
