@@ -18,6 +18,7 @@ const jobQuery = gql`
         yearStarted
         role
         description
+        order
         highlight {
           sys {
             id
@@ -37,6 +38,7 @@ const highlightQuery = gql`
       fields {
         title
         detail
+        order
         job {
           sys {
             id
