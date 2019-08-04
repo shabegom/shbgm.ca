@@ -8,7 +8,7 @@ const StyledContact = styled.div`
 `;
 
 const Title = styled.p`
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
   background-color: ${props => props.theme.accentColorTwo};
   border-radius: 4px;
   padding: 5px;

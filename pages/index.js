@@ -13,9 +13,9 @@ export default withData(props => {
     <>
       <Grid>
         <Person />
-        <Numbers />
+        {<Person /> ? <Numbers /> : ""}
         <Jobs />
-        <Contact />
+        {<Jobs /> ? <Contact /> : ""}
         <Insights />
       </Grid>
     </>

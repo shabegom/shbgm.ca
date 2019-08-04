@@ -24,7 +24,7 @@ const StyledInsightItemBlurb = styled.div`
 `;
 
 const StyledInsightItemHed = styled.div`
-  font-size: 0.9rem;
+  font-family: "Montserrat", sans-serif;
 `;
 
 const InsightTitle = ({ title }) => (
