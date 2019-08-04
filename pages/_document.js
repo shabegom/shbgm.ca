@@ -1,5 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { TypographyStyle } from "react-typography";
+import typography from "../lib/typography";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -31,6 +33,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <meta charSet="utf-8" />
+          <TypographyStyle typography={typography} />
         </Head>
         <body>
           <Main />
