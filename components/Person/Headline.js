@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledHeadline = styled.div`
+  background-color: ${props => props.theme.accentColorOne};
   font-family: "Quicksand", sans-serif;
-  background-color: ${props => props.theme.redAccent};
   padding: 10px;
   margin: 10px;
   border-radius: 4px;

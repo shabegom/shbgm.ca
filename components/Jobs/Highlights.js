@@ -2,12 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { order } from "../../lib/utils";
 
-const HighlightTitle = ({ title }) => (
-  <StyledHighlightTitle>{title}</StyledHighlightTitle>
-);
-
 const StyledHighlightTitle = styled.div`
-  background-color: ${props => props.theme.greyAccent};
+  background-color: ${props => props.theme.accentColorTwo};
   border-radius: 4px;
   padding: 5px;
 `;
@@ -16,21 +12,27 @@ const StyledHighlightItems = styled.ul`
   padding: 5px;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 `;
 
-const Highlight = ({ title, detail }) => {
+const HighlightTitle = ({ title }) => (
+  <StyledHighlightTitle>{title}</StyledHighlightTitle>
+);
+
+const HighlightItems = ({ order, items }) => (
+  <>{items.map(item => <li key={order + Math.random()}>{item}</li>)}</>
+);
+
+const Highlight = ({ title, detail, order }) => {
   return (
-    <>
+    <div key={order + Math.random()}>
       <HighlightTitle title={title} />
       <StyledHighlightItems>
-        <HighlightItems items={detail ? detail : []} />
+        <HighlightItems order={order} items={detail ? detail : []} />
       </StyledHighlightItems>
-    </>
+    </div>
   );
 };
-
-const HighlightItems = ({ items }) => <>{items.map(item => <li>{item}</li>)}</>;
 
 export default ({ highlights, jobId }) =>
   highlights

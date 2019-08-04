@@ -12,7 +12,7 @@ const StyledName = styled.div`
 const StyledSam = styled.span``;
 const StyledMorrison = styled.span`
   font-family: "Montserrat", serif;
-  color: ${props => props.theme.strongRedAccent};
+  color: ${props => props.theme.accentColorOne};
 `;
 
 export default ({ first, last }) => (
