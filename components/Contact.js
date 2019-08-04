@@ -35,7 +35,7 @@ const Button = styled.button`
   }
 `;
 
-const Email = styled.a`
+const Link = styled.a`
   color: ${props => props.theme.accentColorOne};
   text-decoration: none;
 `;
@@ -53,9 +53,15 @@ export default () => {
         <br />
         <br />
         Shoot me an email:{" "}
-        <Email href="mailto:sam@shbgm.ca">sam[at]shbgm.ca</Email>
+        <Link href="mailto:sam@shbgm.ca">sam[at]shbgm.ca</Link>
         <br />
         <br />
+        I can also be found on:<br />
+        <Link href="https://www.linkedin.com/in/sbgood/">LinkedIn</Link>
+        <br />
+        <Link href="https://github.com/shabegom">Github</Link>
+        <br />
+        <Link href="https://twitter.com/shabegom">Twitter</Link>
       </StyledContact>
     </Contact>
   );

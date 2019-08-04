@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
-  bgColor: "#FFFAE7",
+  bgColor: "#fdfaef",
   textColor: "#070707",
   altTextColor: "#f5f5f5",
   accentColorOne: "#C73D37",
