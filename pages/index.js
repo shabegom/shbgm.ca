@@ -19,8 +19,9 @@ export default withData(props => {
         autoClose={8000}
         progressStyle={{ background: "#D97D79" }}
         className="noExport"
-        position="top-center"
+        position="top-left"
         closeButton={false}
+        style={{ width: "60%" }}
       />
       <Grid>
         <Person />
