@@ -8,8 +8,7 @@ const StyledInsight = styled.div`
 `;
 
 const StyledInsightTitle = styled.div`
-  font-size: 1rem;
-  background-color: ${props => props.theme.purpleAccent};
+  background-color: ${props => props.theme.accentColorTwo};
   border-radius: 4px;
   padding: 5px;
 `;
@@ -33,14 +32,14 @@ const InsightTitle = ({ title }) => (
 );
 const InsightItems = ({ point, pointDescription }) =>
   point.map((item, i) => (
-    <StyledInsightItem>
+    <StyledInsightItem key={i + Math.random()}>
       <StyledInsightItemHed>{item}</StyledInsightItemHed>
       <StyledInsightItemBlurb>{pointDescription[i]}</StyledInsightItemBlurb>
     </StyledInsightItem>
   ));
 
 const Insight = ({ title, point, pointDescription }) => (
-  <StyledInsight>
+  <StyledInsight key={Math.random()}>
     <InsightTitle title={title} />
     <InsightItems point={point} pointDescription={pointDescription} />
   </StyledInsight>

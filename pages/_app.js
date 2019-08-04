@@ -27,10 +27,20 @@ const GlobalStyle = createGlobalStyle`
       } 
       body {
   font-family: "Poppins", sans-serif;
-  color: #070707;
-  background-color: FFFAE7;
+  color: ${props => props.theme.textColor};
+  background-color: ${props => props.theme.bgColor};
       }
 `;
+
+const theme = {
+  bgColor: "#FFFAE7",
+  textColor: "#070707",
+  altTextColor: "#f5f5f5",
+  accentColorOne: "#C73D37",
+  accentColorTwo: "#f4c9c9",
+  accentColorThree: "#ede0e0",
+  accentColorFour: "#D97D79"
+};
 
 let pdfExportComponent;
 
@@ -42,13 +52,11 @@ const pdfExportObject = {
   setPDFExportComponent: component => (pdfExportComponent = component)
 };
 
-const theme = {
-  textColor: "#070707",
-  altTextColor: "#f5f5f5",
-  redAccent: "#D97D79",
-  strongRedAccent: "#C73D37",
-  purpleAccent: "#f4c9c9",
-  greyAccent: "#ede0e0"
+const PDFProps = {
+  margin: "2cm",
+  author: "Sam Morrison",
+  fileName: "Morrison-Samuel-Resume.pdf",
+  title: "Samuel Morrison - Resume"
 };
 
 export default class MyApp extends App {
@@ -74,10 +82,7 @@ export default class MyApp extends App {
                   ref={component => {
                     return setPDFExportComponent(component);
                   }}
-                  margin="2cm"
-                  author="Sam Morrison"
-                  fileName="Morrison-Samuel-Resume.pdf"
-                  title="Samuel Morrison - Resume"
+                  {...PDFProps}
                 >
                   <GlobalStyle />
                   <Component {...pageProps} />

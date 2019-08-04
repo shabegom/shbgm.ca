@@ -8,8 +8,8 @@ const StyledContact = styled.div`
 `;
 
 const Title = styled.p`
-  font-family: Montserrat;
-  background-color: ${props => props.theme.purpleAccent};
+  font-family: "Montserrat";
+  background-color: ${props => props.theme.accentColorTwo};
   border-radius: 4px;
   padding: 5px;
   font-weight: bold;
@@ -24,19 +24,19 @@ const Button = styled.button`
   padding: 0.5em 1.5em;
   font-size: 1rem;
   margin-right: 5px;
-  background-color: ${props => props.theme.purpleAccent};
+  background-color: ${props => props.theme.accentColorTwo};
   box-shadow: 1px 1px;
   transition: 0.3s;
 
   &:hover {
-    background-color: ${props => props.theme.greyAccent};
+    background-color: ${props => props.theme.accentColorThree};
     cursor: pointer;
     box-shadow: 2px 2px;
   }
 `;
 
 const Email = styled.a`
-  color: ${props => props.theme.strongRedAccent};
+  color: ${props => props.theme.accentColorOne};
   text-decoration: none;
 `;
 
