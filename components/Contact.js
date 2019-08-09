@@ -34,6 +34,8 @@ export default () => {
         <br />
         <br />
         I can also be found on:<br />
+        <Link href="https://sam-writes.glitch.me/">Blog</Link>
+        <br />
         <Link href="https://www.linkedin.com/in/sbgood/">LinkedIn</Link>
         <br />
         <Link href="https://github.com/shabegom">Github</Link>
