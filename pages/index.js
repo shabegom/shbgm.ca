@@ -12,7 +12,6 @@ import Jobs from "../components/Jobs/";
 import Insights from "../components/Insights/";
 
 export default withData(props => {
-  toast(<Toast />);
   return (
     <>
       <ToastContainer
