@@ -36,7 +36,7 @@ const Year = ({ start, end, role }) => (
 
 const CompanyDescription = ({ desc }) => (
   <StyledDescription>
-    <div dangerouslySetInnerHTML={marked(desc)} />
+    <div dangerouslySetInnerHTML={{ __html: marked(desc) }} />
   </StyledDescription>
 );
 
