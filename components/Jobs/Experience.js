@@ -54,6 +54,9 @@ export default props => (
   <>
     {props.jobs
       .sort(order)
-      .map(company => Company(company.fields, company.sys.id, props.children))}
+      .map(
+        company =>
+          company && Company(company.fields, company.sys.id, props.children)
+      )}
   </>
 );

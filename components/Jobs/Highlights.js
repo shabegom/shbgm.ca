@@ -37,7 +37,7 @@ const Highlight = ({ title, detail, order }) => {
 
 export default ({ highlights, jobId }) =>
   highlights
-    .filter(highlight => highlight.fields.job.sys.id === jobId)
+    .filter(highlight => highlight && highlight.fields.job.sys.id === jobId)
     .sort(order)
     .map(highlight => {
       return Highlight(highlight.fields);
