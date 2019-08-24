@@ -46,7 +46,6 @@ const Company = (
     <CompanyName name={company} />
     <Year start={yearStarted} end={yearEnded} role={role} />
     <CompanyDescription desc={description} />
-    {React.cloneElement(children, { jobId: id })}
   </div>
 );
 
