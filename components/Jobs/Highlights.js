@@ -39,6 +39,4 @@ export default ({ highlights, jobId }) =>
   highlights
     .filter(highlight => highlight && highlight.fields.job.sys.id === jobId)
     .sort(order)
-    .map(highlight => {
-      return Highlight(highlight.fields);
-    });
+    .map(highlight => highlight && Highlight(highlight.fields));

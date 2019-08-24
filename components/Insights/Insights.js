@@ -31,16 +31,16 @@ const InsightTitle = ({ title }) => (
   <StyledInsightTitle>{title}</StyledInsightTitle>
 );
 const InsightItems = ({ point, pointDescription }) =>
-  point.map((item, i) => (
+  pointDescription.map((item, i) => (
     <StyledInsightItem key={i + Math.random()}>
-      <StyledInsightItemHed>{item}</StyledInsightItemHed>
-      <StyledInsightItemBlurb>{pointDescription[i]}</StyledInsightItemBlurb>
+      {point && <StyledInsightItemHed>{point[i]}</StyledInsightItemHed>}
+      <StyledInsightItemBlurb>{item}</StyledInsightItemBlurb>
     </StyledInsightItem>
   ));
 
 const Insight = ({ title, point, pointDescription }) => (
   <StyledInsight key={Math.random()}>
-    <InsightTitle title={title} />
+    {title && <InsightTitle title={title} />}
     <InsightItems point={point} pointDescription={pointDescription} />
   </StyledInsight>
 );

@@ -57,13 +57,7 @@ export default () => (
           if (!loading && data && highlightData) {
             return (
               <Experience>
-                <ExperienceComponent jobs={data.jobs ? data.jobs : []}>
-                  <HighlightsComponent
-                    highlights={
-                      highlightData.highlights ? highlightData.highlights : []
-                    }
-                  />
-                </ExperienceComponent>
+                <ExperienceComponent jobs={data.jobs ? data.jobs : []} />
               </Experience>
             );
           }
