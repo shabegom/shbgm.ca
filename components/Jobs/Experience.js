@@ -35,7 +35,9 @@ const Year = ({ start, end, role }) => (
 );
 
 const CompanyDescription = ({ desc }) => (
-  <StyledDescription>{marked(desc)}</StyledDescription>
+  <StyledDescription>
+    <div dangerouslySetInnerHTML={marked(desc)} />
+  </StyledDescription>
 );
 
 const Company = (
