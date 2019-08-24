@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { order } from "../../lib/utils";
+import marked from "marked";
 
 import Highlights from "./Highlights";
 
@@ -34,7 +35,7 @@ const Year = ({ start, end, role }) => (
 );
 
 const CompanyDescription = ({ desc }) => (
-  <StyledDescription>{desc}</StyledDescription>
+  <StyledDescription>{marked(desc)}</StyledDescription>
 );
 
 const Company = (
