@@ -30,7 +30,7 @@ const StyledDescription = styled.div`
 const CompanyName = ({ name }) => <StyledName>{name}</StyledName>;
 
 const Year = ({ start, end, role }) => (
-  <StyledYear>{role.join(" | ")}</StyledYear>
+  <StyledYear>{role ? role.join(" | ") : ""}</StyledYear>
 );
 
 const CompanyDescription = ({ desc }) => (
