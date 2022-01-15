@@ -37,7 +37,7 @@
     "graphql": "^14.3.0",
     "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "next": "^8.1.0",
     "next-apollo": "^2.1.0",
     "next-fonts": "^0.17.0",
